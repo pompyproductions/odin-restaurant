@@ -2,13 +2,23 @@ const path = require('path');
 
 module.exports = {
     mode: "development",
-    entry: "./src/index.js",
-    devServer: {
-        static: "./dist"
+    entry: {
+        main: path.resolve(__dirname, "src/index.js")
     },
     output: {
-        filename: "main.js",
+        filename: "[name].js",
         path: path.resolve(__dirname, "dist")
+    },
+    module: {
+        rules: [
+            {
+                test: /\.s[ac]ss$/,
+                use: ["style-loader", "css-loader", "sass-loader"]
+            }
+        ]
+    },
+    devServer: {
+        static: path.resolve(__dirname, "dist")
     },
     // optimization: {
     //     runtimeChunk: 'single',
