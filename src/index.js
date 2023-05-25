@@ -10,7 +10,8 @@ domContent.append(
         children: [{
           tag: "h1",
           text: "POM-PESC"
-        }]
+        }],
+        uid: true
     }),
     newElem({
         tag: "main",
@@ -21,13 +22,15 @@ domContent.append(
             ["src", tunaImg],
             ["alt", "A tuna dish."]
           ]
-        }]
+        }],
+        uid: true
     }),
     newElem({
         tag: "footer",
         children: [{
           tag: "p",
           text: "Made with \u2665 by Pompy Productions. All rights reserved."
-        }]
+        }],
+        uid: true
     })
 );
