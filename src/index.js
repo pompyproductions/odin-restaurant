@@ -1,11 +1,15 @@
 import "./sass/styles.scss";
-import tunaImg from "./assets/tuna2.png";
-import newElem from "./modules/dom.js";
+import domTools from "./modules/dom";
+import { getPage } from "./modules/pages"
 
-const domContent = document.getElementById("content");
+const entryPoint = document.getElementById("entry");
 
-domContent.append(
-    newElem({
+function switchPage(page) {
+  pageContent.replaceChildren(getPage(page))
+}
+
+entryPoint.append(
+    domTools.newElem({
         tag: "header",
         children: [{
           tag: "h1",
@@ -13,19 +17,15 @@ domContent.append(
         }],
         uid: true
     }),
-    newElem({
+    domTools.newElemNav([{
+
+    }]),
+    domTools.newElem({
         tag: "main",
-        children: [{
-          tag: "img",
-          id: "tuna-img",
-          attributes: [
-            ["src", tunaImg],
-            ["alt", "A tuna dish."]
-          ]
-        }],
+        id: "content",
         uid: true
     }),
-    newElem({
+    domTools.newElem({
         tag: "footer",
         children: [{
           tag: "p",
@@ -34,3 +34,7 @@ domContent.append(
         uid: true
     })
 );
+
+const pageNav = document.querySelector("nav.page-nav");
+const pageContent = document.getElementById("content");
+switchPage("home");

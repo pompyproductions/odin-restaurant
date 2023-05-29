@@ -1,7 +1,7 @@
 let uidCounter = 0;
 
 function newElem(obj) {
-  if (!Object.hasOwn(obj, "tag")) return false;
+  if (!Object.hasOwn(obj, "tag")) obj.tag = "div";
 
   const elem = document.createElement(obj.tag);
 
@@ -19,12 +19,16 @@ function newElem(obj) {
       case "attributes":
         for (let attr of val) {
           if (attr[0] === "data-uid") continue;
-          elem.setAttribute(attr[0], attr[1])
+          elem.setAttribute(attr[0], attr[1]);
         }
         break;
       case "children":
         for (let node of val) {
-          elem.appendChild(newElem(node));
+          if (val instanceof HTMLElement) {
+            elem.appendChild(node);
+          } else {
+            elem.appendChild(newElem(node));
+          }
         }
         break;
       case "uid":
@@ -32,9 +36,33 @@ function newElem(obj) {
           elem.setAttribute("data-uid", uidCounter++);
         }
         break;
+      case "listeners":
+        for (let listener of val) {
+          elem.addEventListener(listener[0], listener[1])
+        }
     }
   }
   return elem;
 }
 
-export default newElem;
+function newNav(obj, isOrdered = false) {
+  const children = [];
+  for (let childNode of obj) {
+    if (childNode instanceof HTMLElement) {
+      children.push(childNode)
+    } else {
+      children.push(newElem(childNode))
+    }
+  }
+  return newElem({
+    tag: "nav",
+    children: [
+      {
+        tag: isOrdered ? "ol" : "ul",
+        children: children
+      },
+    ],
+  });
+}
+
+export default { newElem, newNav };
