@@ -1,8 +1,6 @@
 import domalt from "domalt";
 import tunaImg from "../assets/tuna2.png";
 
-const pageParent = document.getElementById("content");
-
 const pages = {
   home: domalt.newElem({
     tag: "img",
@@ -27,12 +25,11 @@ const pages = {
   })
 }
 
-const switchPage = (pageName) => {
-  if (pages.hasOwn(pageName)) {
-    pageParent.replaceChildren(pages[pageName]);
-  } else {
-    pageParent.replaceChildren(pages.notFound);
-  }
+const getPage = (pageName) => {
+  if (pages.hasOwnProperty(pageName)) {
+    return pages[pageName];
+  } 
+  return pages.notFound;
 }
 
-export { switchPage };
+export { getPage };
