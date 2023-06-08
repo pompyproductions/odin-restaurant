@@ -11,6 +11,7 @@ This gem of a video helped out:
 [Webpack 5 Crash Course | Frontend Development Setup](https://www.youtube.com/watch?v=IZGNcSuwBZs)  
 from [Traversy Media](https://www.youtube.com/@TraversyMedia)
 
+
 ## Approach
 
 Since it's a hassle to create html nodes with vanilla JS methods, I ended up writing a JS module that handles the annoying parts for me. This way, I can just feed an object to my "newElem" function and have it output directly the DOM elements that I want:
