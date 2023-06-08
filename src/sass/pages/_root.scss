@@ -1,8 +1,10 @@
+@use "../globals/mixins" as *;
+
 body > #entry {
   background-color: var(--yellow);
   // padding: 0 1rem;
   display: grid;
-  grid-template-rows: min-content 1fr min-content;
+  grid-template-rows: min-content min-content 1fr min-content;
   gap: 1rem;
   height: 100vh;
   overflow: hidden;
@@ -15,6 +17,27 @@ header {
   border-bottom: 1px var(--black) solid;
   display: grid;
   place-items: center;
+}
+
+nav {
+  display: flex;
+  gap: 6rem;
+  justify-content: center;
+  a {
+    cursor: pointer;
+    border: 1px solid var(--black);
+    width: 4rem;
+    text-align: center;
+    padding: 0.2em 2em;
+    transition: background-color 0.12s, transform 0.1s;
+    &:hover {
+      background-color: var(--white);
+    }
+    &:active {
+      transform: translateY(2px);
+    }
+    @include disable-selection;
+  }
 }
 
 main {

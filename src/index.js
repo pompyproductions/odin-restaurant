@@ -3,6 +3,15 @@ import domalt from "domalt";
 import { getPage } from "./modules/pages.js";
 
 const entryPoint = document.getElementById("entry");
+const navElems = ["home", "menu", "contact", "test"].map((pageName) => {
+  return {
+    tag: "a",
+    content: pageName,
+    listeners: [
+      ["click", () => switchPage(pageName)]
+    ]
+  }
+});
 
 entryPoint.append(
   domalt.newElem({
@@ -14,7 +23,10 @@ entryPoint.append(
       },
     ],
   }),
-  // domalt.newElemNav(),
+  domalt.newElem({
+    tag: "nav",
+    children: navElems
+  }),
   domalt.newElem({
     tag: "main",
     saveAs: "content",
@@ -30,6 +42,8 @@ entryPoint.append(
   })
 );
 
-const pageNav = document.querySelector("nav.page-nav");
-const pageContent = document.getElementById("content");
-domalt.retrieve("content").replaceChildren(getPage("home"));
+const switchPage = (pageName) => {
+  domalt.retrieve("content").replaceChildren(getPage(pageName));
+}
+
+switchPage("home");
