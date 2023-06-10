@@ -1,4 +1,5 @@
 import domalt from "domalt";
+import { recipes } from "./recipes";
 import tunaImg from "../assets/tuna2.png";
 
 const pages = {
@@ -10,11 +11,7 @@ const pages = {
       ["alt", "A tuna dish."],
     ],
   }),
-  menu: domalt.newElemList([
-    "Tuna pasta",
-    "Salmon chirashi",
-    "Canned sardine salad"
-  ]),
+  menu: domalt.newElemList(recipes),
   contact: domalt.newElem({
     tag: "p",
     content: "Coming soon."

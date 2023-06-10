@@ -1,0 +1,17 @@
+.card {
+  background-color: var(--white);
+  border-radius: 2rem;
+  // height: 12rem;
+  padding: 2rem;
+  display: grid;
+  gap: 1rem;
+  place-items: center;
+  h3::after {
+    content: "";
+    display: block;
+    min-height: 1px;
+    margin-top: 0.4em;
+    width: 100%;
+    background-color: var(--black);
+  }
+}

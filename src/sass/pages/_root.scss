@@ -46,6 +46,10 @@ main {
   padding: 0 1rem;
   display: grid;
   place-items: center;
+  ul {
+    display: grid;
+    gap: 1rem;
+  }
 }
 
 footer {
